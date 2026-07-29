@@ -20,6 +20,13 @@
       echo "Dev user detected"
   fi
   ```
+
+  >[!NOTE]  
+  >in if block Use [ ] for portable POSIX scripts (works in sh in -gt like condition)
+  >in if block Use[[ ]] for Bash/Ksh scripts (safer, more features in both manner like <= and -le).
+  >In if block Use (( )) for arithmetic.
+
+
 - **Production use case**: Validating usernames, branch names, or environment variables in CI/CD pipelines.
 
 ---
