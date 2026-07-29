@@ -205,4 +205,21 @@ Here’s a **20-question full mock test** on Linux shell scripting bracket usage
 
 ---
 
+Example 1
+
+```bash
+read N
+sum=0
+count=$N
+while(( $N>= 1))
+do
+read x
+sum=$(( sum + x ))
+#arr+=($x)
+(( N-- ))
+done
+#avg=$(( sum / count )) not working
+printf "%0.3f" "$( echo "scale=4; $sum / $count " |bc)"
+```
+
 
