@@ -1043,6 +1043,24 @@ mohan   sita
 riya    pintu
 siya    ritu
 ```
+Lines are separated by commas or colons instead of tabs.
+```
+paste -d ',' file1.txt file2.txt
+paste -d ': ' file1.txt file2.txt
+```
+ Serialize Lines (Convert Vertical to Horizontal)  
+Joins all lines of a file into a single row, separated by tabs or commas.
+```
+paste -s file1.txt
+paste -s -d ',' file1.txt
+```
+Others
+```
+paste -d ',;' file1.txt file2.txt file3.txt
+paste - - < file.txt
+paste <(ls) <(date)
+paste -z file1.txt file2.txt
+```
 
 #### `diff` - Compare Files
 ```bash
