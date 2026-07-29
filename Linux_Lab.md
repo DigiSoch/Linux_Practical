@@ -3397,26 +3397,32 @@ truncate -s 0 /var/log/nginx/error.log
 
 ### VI Editor/VIM/view
 
-Command Description
+#### Command Description
+```
 vi filename - Creates a new file if it already does not exist, otherwise opens existing file.
 vi -R filename - Opens an existing file in read only mode.
 view filename - Opens an existing file in read only mode.
-
-Cursor Options : Command Description
+```
+#### Cursor Options : Command Description
+```
 k - Moves the cursor up one line.
 j - Moves the cursor down one line.
 h - Moves the cursor to the left one character position.
 l - Moves the cursor to the right one character position.
+```
 
-Editing Files Command Description
+#### Editing Files Command Description
+```
 i - Inserts text before current cursor location.
 I - Inserts text at beginning of current line.
 a - Inserts text after current cursor location.
 A - Inserts text at end of current line.
 o - Creates a new line for text entry below cursor location.
 O - Creates a new line for text entry above cursor location.
+```
 
-Deleting Characters Command Description
+#### Deleting Characters Command Description
+```
 x - Deletes the character under the cursor location.
 X - Deletes the character before the cursor location.
 dw - Deletes from the current cursor location to the next word.
@@ -3424,8 +3430,9 @@ d^ - Deletes from current cursor position to the beginning of the line.
 d$ - Deletes from current cursor position to the end of the line.
 D - Deletes from the cursor position to the end of the current line.
 dd - Deletes the line the cursor is on.
-
-How to save file in vi …. Press (ESC + Shift + : ) Command Description
+```
+#### How to save file in vi …. Press (ESC + Shift + : ) Command Description
+```
 w - save and remain open like ctrl + s in windows
 wq - save and quiet
 x - save file and quiet editing mode
@@ -3433,9 +3440,11 @@ wq! - save and quiet forcefully
 H - Go to start line
 M - Go to Middle Line
 L - Go to Last line
-
-Some Options (file editing options are ) Command Description
+```
+#### Some Options (file editing options are ) Command Description
+```
 r - Replace single character
 R - Replace text from the cursor to right
 s - substitute
 g - globally
+```
