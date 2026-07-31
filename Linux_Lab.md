@@ -1014,6 +1014,47 @@ username@hostname:~$ cut -d ':' -f 1 /etc/passwd    # Field 1 (usernames), delim
 username@hostname:~$ cut -d ':' -f 7 /etc/passwd    # Field 7 (shells)
 ```
 
+### To strip the `%` sign and keep only the numeric part (like turning `80%` into `80`) so you can do arithmetic comparisons, you can use several approaches in Linux shell scripting:
+
+### 🔧 Using `sed`
+```bash
+echo "80%" | sed 's/%//'
+# Output: 80
+```
+
+### 🔧 Using `tr`
+```bash
+echo "80%" | tr -d '%'
+# Output: 80
+```
+
+### 🔧 Using `awk`
+```bash
+echo "80%" | awk '{gsub("%",""); print $0}'
+# Output: 80
+```
+
+### 🔧 Using Bash Parameter Expansion
+```bash
+val="80%"
+echo "${val%\%}"
+# Output: 80
+```
+
+---
+
+### ⚡ Example: Arithmetic Comparison
+```bash
+val=$(echo "80%" | tr -d '%')
+
+if [ "$val" -gt 75 ]; then
+  echo "Above threshold"
+else
+  echo "Below threshold"
+fi
+
+```
+
 > **`-d`** for delimiter, **`-f`** for field/column number
 
 #### `head` / `tail` - Head/Tail of Files
