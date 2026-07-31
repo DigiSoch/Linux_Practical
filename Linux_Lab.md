@@ -1816,12 +1816,30 @@ sed -i '/^#/d' file.conf                          # Remove all comment lines
 ```
 
 #### `awk` - Text Processing
+**In awk, NR is a built-in variable that stands for Number of Records. It keeps track of how many input records (usually lines) have been read so far.**
+
 ```bash
-awk '{print $1}' file.txt                         # Print first column
+
+awk '{print $1}' file.txt                         # Print first column (most basic command)
 awk -F: '{print $1, $7}' /etc/passwd             # Delimiter : print fields 1 and 7
 awk '$3 > 50 {print $1, $3}' file.txt            # Conditional print
 awk '{sum+=$3} END {print sum}' file.txt          # Sum of column 3
+awk '{print NR, $0}' file.txt                    # Print line number and line content
+awk 'NR==1 {print $0}' file.txt                  # Print only the first line
+awk 'NR>5 {print $0}' file.txt                    # Print lines after the 5th line
 awk 'NR>1 {print $0}' file.txt                   # Skip header line
+awk '{s+=$1} END {print s}' path/to/file        # Sum the values in the first column of a file and print the total
+awk 'NR%3==1' path/to/fil                      #Print every third line starting from the first line
+awk '/foo/ {print $2}' path/to/file            # Print the second column of the lines containing "foo" in a space-separated file
+awk '{if ($1 == "foo") print "Exact match foo"; else if ($1 ~ "bar") print "Partial match bar"; else print "Baz"}' path/to/file 
+awk '($10 >= min_value && $10 <= max_value)' path/to/file     # Print all the lines which the 10th column value is between a min and a max:
+
+
+Real world Use (need to configure your mail to use this)
+
+
+echo "Hello Himanshu your project file utilization has been reached to " $(df -kh /mnt/c |awk 'NR==2 {print $5}') |mail -s
+"Important Alert!" <recipient mail id> 
 ```
 
 #### `xargs` - Build & Execute Commands
