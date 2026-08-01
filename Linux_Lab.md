@@ -1010,8 +1010,12 @@ username@hostname:~$ wc -c abcd.log                 # Byte count
 ```bash
 username@hostname:~$ cut -c 1-4 abc.log             # Characters 1-4
 bada
+cut -c 3                                            # cut the 3 character of each line like l of welcome 
+cut -c 2,7                                          # cut the 2nd and 7th character and print together without space like ma of important
+cut -f 1-3                                          # Field 1 to 3 
 username@hostname:~$ cut -d ':' -f 1 /etc/passwd    # Field 1 (usernames), delimiter ':'
 username@hostname:~$ cut -d ':' -f 7 /etc/passwd    # Field 7 (shells)
+echo "Hello" |cut -d ' ' -f 4                       # will give Hello , since delimiter is not matched so it will give whole line. you can test by changing delimiter. here space
 ```
 
 ### To strip the `%` sign and keep only the numeric part (like turning `80%` into `80`) so you can do arithmetic comparisons, you can use several approaches in Linux shell scripting:
