@@ -528,7 +528,7 @@ username@hostname:~$ uname -r
 
 >Here is the breakdown of what that long string of information actually tells you:
 
-```
+
 | **Field** | **Option** | **Description** | **Example Output** |
 | --- | --- | --- | --- |
 | Kernel name | ``-s`` | Operating system kernel name | ``Linux`` |
@@ -541,7 +541,7 @@ username@hostname:~$ uname -r
 | Operating system | ``-o`` | OS name | ``GNU/Linux`` |
 
 
-```
+
 ##### ps command used for manage processes
 
 ```bash
@@ -966,8 +966,25 @@ abcd.log:44:Advanced system states can be appended...
 ```
 
 #### `sort` - Sort Lines
+
+| Option | Purpose | Example |
+| --- | --- | --- |
+| Default | Sort lines alphabetically | ``sort ``file.txt`` |
+| ``-n`` | Numeric sort | ``sort ``-n ``numbers.txt`` |
+| ``-r`` | Reverse order | ``sort ``-r ``file.txt`` |
+| ``-k`` | Sort by specific column/field | ``sort ``-k2 ``file.txt`` → sort by 2nd column |
+| ``-t`` | Specify delimiter | ``sort ``-t',' ``-k2 ``data.csv`` → sort CSV by 2nd column |
+| ``-u`` | Unique sort (remove duplicates) | ``sort ``-u ``file.txt`` |
+| ``-o`` | Output to file | ``sort ``file.txt ``-o ``sorted.txt`` |
+| ``-M`` | Sort by month names | ``sort ``-M ``months.txt`` |
+| ``-c`` | Check if file is sorted | ``sort ``-c ``file.txt`` |
+
 ```bash
-username@hostname:~$ sort -n numbers                # Numeric sort
+Order the lines in lexicographical\dictionary order to their alphabetical sequence.
+sort filename
+
+
+username@hostname:~$ sort -n numbers                # Numeric sort it works with decimal numbers as well
 1
 2
 3
@@ -1016,6 +1033,34 @@ cut -f 1-3                                          # Field 1 to 3
 username@hostname:~$ cut -d ':' -f 1 /etc/passwd    # Field 1 (usernames), delimiter ':'
 username@hostname:~$ cut -d ':' -f 7 /etc/passwd    # Field 7 (shells)
 echo "Hello" |cut -d ' ' -f 4                       # will give Hello , since delimiter is not matched so it will give whole line. you can test by changing delimiter. here space
+cut -d',' --complement -f1 data.csv                 # remove the first column and keep the rest
+```
+
+>[!NOTE]
+>The default delimiter is tab in cut command so no need to put the delimiter using -d.
+
+### Think of tr as a character-level transformer: it doesn’t understand fields or words, only characters. For more complex text manipulation, you’d use sed or awk.
+
+#### Convert lowercase to uppercase
+```
+echo "linux" | tr 'a-z' 'A-Z'
+```
+#### Delete all digits
+```
+echo "abc123" | tr -d '0-9'
+```
+#### Replace spaces with commas
+```
+echo "one two three" | tr ' ' ','
+```
+#### Squeeze multiple spaces into one
+```
+echo "this    is   test" | tr -s ' '
+
+
+USE case
+
+echo "int i=(int)5.8(23 + 5)*2" |tr '()' '[]'              #  translate to int i=[int]5.8[23 + 5]*2
 ```
 
 ### To strip the `%` sign and keep only the numeric part (like turning `80%` into `80`) so you can do arithmetic comparisons, you can use several approaches in Linux shell scripting:
@@ -1063,14 +1108,23 @@ fi
 
 #### `head` / `tail` - Head/Tail of Files
 ```bash
-username@hostname:~$ head z
-username@hostname:~$ head -4 z
+username@hostname:~$ head z          # print starting 10 line of file z
+username@hostname:~$ head -4 z       # print 4 lines of the z file also can be used as head -n 4 z
+username@hostname:~$ head -c 20 z     # print starting 20 character of the given file z
 username@hostname:~$ tail z
 username@hostname:~$ tail -n 2 z
 username@hostname:~$ tail -f linux_basic_commands.txt    # Follow mode (live update)
+head -n 22| tail -n 11              # Display the lines (from line number 12 to 22, both inclusive) for the input file.
+
 ```
 
+
 #### `paste` - Merge Lines of Files
+
+>[!NOTE]
+>Default separator is Tab in paste command
+
+
 ```bash
 username@hostname:~$ cat new
 rohan
@@ -1102,8 +1156,8 @@ paste -s -d ',' file1.txt
 Others
 ```
 paste -d ',;' file1.txt file2.txt file3.txt
-paste - - < file.txt
-paste <(ls) <(date)
+paste - - < file.txt      # Merges every two lines from the same file into one row. similarly paste - - - - .....
+paste <(ls) <(date)       # paste the result of both command side by side
 paste -z file1.txt file2.txt
 ```
 
@@ -1877,8 +1931,8 @@ awk '{s+=$1} END {print s}' path/to/file        # Sum the values in the first co
 awk 'NR%3==1' path/to/fil                      #Print every third line starting from the first line
 awk '/foo/ {print $2}' path/to/file            # Print the second column of the lines containing "foo" in a space-separated file
 awk '{if ($1 == "foo") print "Exact match foo"; else if ($1 ~ "bar") print "Partial match bar"; else print "Baz"}' path/to/file 
-awk '($10 >= min_value && $10 <= max_value)' path/to/file     # Print all the lines which the 10th column value is between a min and a max:
-
+awk '($10 >= min_value && $10 <= max_value)' path/to/file    # Print all the lines which the 10th column value is between a min and a max:
+awk 'NR >=12 && NR <=22' filename.txt                        # To print 12 to 22 line inclusive in a file
 
 Real world Use (need to configure your mail to use this)
 
