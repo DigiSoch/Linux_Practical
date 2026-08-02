@@ -1011,6 +1011,16 @@ username@hostname:~$ sort -n numbers | uniq
 4
 5
 7
+
+uniq -c | sed 's/^ *//'                 # Remove whitespace/leading space from output
+uniq -c file.txt | awk '{print $1, $2}' # Prints count and line content without extra spaces.
+uniq -c file.txt | tr -s ' '
+echo -e "apple\napple\nbanana\nbanana\nbanana" | uniq -c | sed 's/^ *//'
+result -
+2 apple
+3 banana
+
+uniq -c filename|awk '{print $1,$2,$3}'         # Prints count and line content without extra spaces.
 ```
 
 #### `wc` - Word Count
@@ -1933,7 +1943,7 @@ awk '/foo/ {print $2}' path/to/file            # Print the second column of the 
 awk '{if ($1 == "foo") print "Exact match foo"; else if ($1 ~ "bar") print "Partial match bar"; else print "Baz"}' path/to/file 
 awk '($10 >= min_value && $10 <= max_value)' path/to/file    # Print all the lines which the 10th column value is between a min and a max:
 awk 'NR >=12 && NR <=22' filename.txt                        # To print 12 to 22 line inclusive in a file
-
+uniq -c |awk '{print $1,$2,$3}'
 Real world Use (need to configure your mail to use this)
 
 
