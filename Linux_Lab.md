@@ -1011,8 +1011,10 @@ username@hostname:~$ sort -n numbers | uniq
 4
 5
 7
-
-uniq -c | sed 's/^ *//'                 # Remove whitespace/leading space from output
+uniq -d
+uniq -D 
+uniq -c | sed 's/^ *//'                 # Remove whitespace/leading space from output. use i for ignore case
+uniq -u | sed 's/^ *//'                 # print only who has not duplicate by removing whitespace
 uniq -c file.txt | awk '{print $1, $2}' # Prints count and line content without extra spaces.
 uniq -c file.txt | tr -s ' '
 echo -e "apple\napple\nbanana\nbanana\nbanana" | uniq -c | sed 's/^ *//'
