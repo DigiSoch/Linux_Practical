@@ -2364,7 +2364,50 @@ echo "${file//j/J}"                        # Replace all matches → photo.Jpg
 ---
 
 ### Arrays
+
+```
+🔧 Declaring Arrays
+# Indexed array
+arr=(10 20 30 40)
+
+# Explicit index assignment
+arr[0]=10
+arr[1]=20
+arr[2]=30
+
+# Associative array (requires declare)
+declare -A fruits
+fruits[apple]="red"
+fruits[banana]="yellow"
+
+📥 Reading Array Elements
+echo ${arr[0]}        # prints first element → 10
+echo ${arr[2]}        # prints third element → 30
+echo ${fruits[apple]} # prints → red
+
+📢 Printing All Elements
+echo ${arr[@]}        # prints all elements → 10 20 30 40
+echo ${arr[*]}        # same as above
+
+🔀 Iterating Over Arrays
+for val in "${arr[@]}"; do
+  echo $val
+done
+
+📊 Array Length
+echo ${#arr[@]}       # number of elements → 4
+echo ${#arr[0]}       # length of first element → 2 (since "10" has 2 chars)
+
+⚡ Example: Reading Input into Array
+read -a nums
+# If you type: 5 10 15
+echo "First: ${nums[0]}, Second: ${nums[1]}"
+```
+
+
+
 ```bash
+more notes
 # Indexed Array
 fruits=("apple" "banana" "cherry")
 echo "${fruits[0]}"                        # First element → apple
